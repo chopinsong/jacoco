@@ -81,7 +81,7 @@ public interface IHTMLReportContext {
 	 */
 	Locale getLocale();
 
-    AddMethodListener getAddMethodListener();
-
 	void setAddMethodListener(AddMethodListener listener);
+
+	AddMethodListener getAddMethodListener();
 }

@@ -178,15 +178,14 @@ public class HTMLFormatter implements IHTMLReportContext {
 		return locale;
 	}
 
+	@Override
+	public void setAddMethodListener(AddMethodListener listener) {
+		this.listener = listener;
+	}
 
 	@Override
 	public AddMethodListener getAddMethodListener() {
 		return this.listener;
-	}
-
-	@Override
-	public void setAddMethodListener(AddMethodListener listener) {
-		this.listener = listener;
 	}
 
 	/**

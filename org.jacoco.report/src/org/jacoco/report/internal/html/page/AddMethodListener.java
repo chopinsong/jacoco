@@ -1,7 +1,20 @@
+/*******************************************************************************
+ * Copyright (c) 2009, 2020 Mountainminds GmbH & Co. KG and Contributors
+ * This program and the accompanying materials are made available under
+ * the terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *    Marc R. Hoffmann - initial API and implementation
+ *
+ *******************************************************************************/
 package org.jacoco.report.internal.html.page;
 
 public interface AddMethodListener {
-    void onAdd(String var1, String var2, String var3, String var4);
 
-    void write();
+	void onAdd(String packageName, String name, String name1, String label);
+
+	void write();
 }

@@ -60,11 +60,12 @@ public class ClassPage extends TablePage<IClassCoverage> {
 	public void render() throws IOException {
 		AddMethodListener l = this.context.getAddMethodListener();
 		for (final IMethodCoverage m : getNode().getMethods()) {
-			final String label = context.getLanguageNames().getMethodName(
+			String label = context.getLanguageNames().getMethodName(
 					getNode().getName(), m.getName(), m.getDesc(),
 					m.getSignature());
 			if (l != null) {
-				l.onAdd(((IClassCoverage)this.getNode()).getPackageName(), ((IClassCoverage)this.getNode()).getName(), m.getName(), label);
+				l.onAdd(getNode().getPackageName(), getNode().getName(),
+						m.getName(), label);
 			}
 			addItem(new MethodItem(m, label, sourcePage));
 		}
