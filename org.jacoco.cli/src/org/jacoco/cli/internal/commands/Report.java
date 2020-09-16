@@ -155,6 +155,7 @@ public class Report extends Command {
 
 		if (html != null) {
 			final HTMLFormatter formatter = new HTMLFormatter();
+			formatter.setAddMethodListener(new WriteMethodInfo(this.html));
 			visitors.add(
 					formatter.createVisitor(new FileMultiReportOutput(html)));
 		}

@@ -16,6 +16,7 @@ import java.util.Locale;
 
 import org.jacoco.report.ILanguageNames;
 import org.jacoco.report.internal.html.index.IIndexUpdate;
+import org.jacoco.report.internal.html.page.AddMethodListener;
 import org.jacoco.report.internal.html.resources.Resources;
 import org.jacoco.report.internal.html.table.Table;
 
@@ -80,4 +81,7 @@ public interface IHTMLReportContext {
 	 */
 	Locale getLocale();
 
+    AddMethodListener getAddMethodListener();
+
+	void setAddMethodListener(AddMethodListener listener);
 }

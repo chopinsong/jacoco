@@ -33,6 +33,7 @@ import org.jacoco.report.internal.html.IHTMLReportContext;
 import org.jacoco.report.internal.html.ILinkable;
 import org.jacoco.report.internal.html.index.ElementIndex;
 import org.jacoco.report.internal.html.index.IIndexUpdate;
+import org.jacoco.report.internal.html.page.AddMethodListener;
 import org.jacoco.report.internal.html.page.BundlePage;
 import org.jacoco.report.internal.html.page.ReportPage;
 import org.jacoco.report.internal.html.page.SessionsPage;
@@ -64,6 +65,7 @@ public class HTMLFormatter implements IHTMLReportContext {
 	private SessionsPage sessionsPage;
 
 	private Table table;
+	private AddMethodListener listener;
 
 	/**
 	 * New instance with default settings.
@@ -174,6 +176,17 @@ public class HTMLFormatter implements IHTMLReportContext {
 
 	public Locale getLocale() {
 		return locale;
+	}
+
+
+	@Override
+	public AddMethodListener getAddMethodListener() {
+		return this.listener;
+	}
+
+	@Override
+	public void setAddMethodListener(AddMethodListener listener) {
+		this.listener = listener;
 	}
 
 	/**
