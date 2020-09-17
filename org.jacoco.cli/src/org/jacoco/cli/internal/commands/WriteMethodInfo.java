@@ -30,9 +30,10 @@ public class WriteMethodInfo implements AddMethodListener {
 			String vmMethodName, String methodName, int coveredCount,
 			int missedCount) {
 		this.info.append(packageName).append(";").append(vmClassName)
-				.append(";").append(vmMethodName).append(";").append(methodName).append(";")
-				.append(missedCount).append(";").append(coveredCount)
-				.append(";").append(System.getProperty("line.separator"));
+				.append(";").append(vmMethodName).append(";").append(methodName)
+				.append(";").append(missedCount).append(";")
+				.append(coveredCount).append(";")
+				.append(System.getProperty("line.separator"));
 	}
 
 	public void write() {
