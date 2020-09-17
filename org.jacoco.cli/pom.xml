@@ -39,19 +39,6 @@
       <artifactId>args4j</artifactId>
     </dependency>
   </dependencies>
-  <distributionManagement>
-    <repository>
-      <id>releases</id>
-      <name>4px-nexus</name>
-      <url>http://172.16.30.37:8081/nexus/content/repositories/releases/</url>
-    </repository>
-
-    <snapshotRepository>
-      <id>snapshots</id>
-      <name>4px-nexus</name>
-      <url>http://172.16.30.37:8081/nexus/content/repositories/snapshots/</url>
-    </snapshotRepository>
-  </distributionManagement>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
