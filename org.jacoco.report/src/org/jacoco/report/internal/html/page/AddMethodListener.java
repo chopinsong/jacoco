@@ -14,7 +14,8 @@ package org.jacoco.report.internal.html.page;
 
 public interface AddMethodListener {
 
-	void onAdd(String packageName, String vmMethodName, String methodName, String label, int coveredCount, int missedCount);
+	void onAdd(String packageName, String vmMethodName, String methodName,
+			String label, int missedCount, int coveredCount);
 
 	void write();
 }
