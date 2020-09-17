@@ -33,45 +33,41 @@ public class WriteMethodInfo implements AddMethodListener {
                 .append(System.getProperty("line.separator"));
     }
 
-	public void write() {
-		if (this.html != null) {
-			File parentFile = this.html.getParentFile();
-			if (parentFile != null) {
-				File file = new File(parentFile.getAbsolutePath(),
-						"methodInfo.txt");
-				if (file.exists()) {
-					file.delete();
-				}
+    public void write() {
+        if (html == null) {
+            return;
+        }
+        File parentFile = this.html.getParentFile();
+        if (parentFile == null) {
+            return;
+        }
+        File file = new File(parentFile.getAbsolutePath(), "methodInfo.txt");
+        if (file.exists()) {
+            file.delete();
+        }
+        boolean newFile = false;
+        try {
+            newFile = file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (newFile && file.isFile()) {
+            FileWriter fileWriter = null;
+            try {
+                fileWriter = new FileWriter(file);
+                fileWriter.write(this.info.toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (fileWriter != null) {
+                    try {
+                        fileWriter.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
 
-				boolean newFile = false;
-
-				try {
-					newFile = file.createNewFile();
-				} catch (IOException var16) {
-					var16.printStackTrace();
-				}
-
-				if (newFile && file.isFile()) {
-					FileWriter fileWriter = null;
-
-					try {
-						fileWriter = new FileWriter(file);
-						fileWriter.write(this.info.toString());
-					} catch (IOException var15) {
-						var15.printStackTrace();
-					} finally {
-						if (fileWriter != null) {
-							try {
-								fileWriter.close();
-							} catch (IOException var14) {
-								var14.printStackTrace();
-							}
-						}
-
-					}
-				}
-
-			}
-		}
-	}
+            }
+        }
+    }
 }
