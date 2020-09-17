@@ -65,7 +65,7 @@ public class ClassPage extends TablePage<IClassCoverage> {
 					m.getSignature());
 			if (l != null) {
 				l.onAdd(getNode().getPackageName(), getNode().getName(),
-						m.getName(), label);
+						m.getName(), label,getNode().getMethodCounter().getCoveredCount(),getNode().getMethodCounter().getMissedCount());
 			}
 			addItem(new MethodItem(m, label, sourcePage));
 		}

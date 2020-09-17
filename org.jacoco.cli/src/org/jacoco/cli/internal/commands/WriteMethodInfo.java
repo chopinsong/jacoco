@@ -19,19 +19,19 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class WriteMethodInfo implements AddMethodListener {
-	private StringBuilder info = new StringBuilder();
-	private File html;
+    private StringBuilder info = new StringBuilder();
+    private File          html;
 
-	public WriteMethodInfo(File html) {
-		this.html = html;
-	}
+    public WriteMethodInfo(File html) {
+        this.html = html;
+    }
 
-	public void onAdd(String packageName, String vmClassName,
-			String vmMethodName, String methodName) {
-		this.info.append(packageName).append(";").append(vmClassName)
-				.append(";").append(vmMethodName).append(";").append(methodName)
-				.append(System.getProperty("line.separator"));
-	}
+    public void onAdd(String packageName, String vmClassName,
+                      String vmMethodName, String methodName, int coveredCount, int missedCount) {
+        this.info.append(packageName).append(";").append(vmClassName)
+                .append(";").append(vmMethodName).append(";").append(methodName).append(coveredCount).append(";").append(missedCount).append(";")
+                .append(System.getProperty("line.separator"));
+    }
 
 	public void write() {
 		if (this.html != null) {

@@ -87,6 +87,15 @@ public abstract class PageTestBase {
 				return Locale.ENGLISH;
 			}
 
+			@Override
+			public void setAddMethodListener(AddMethodListener listener) {
+			}
+
+			@Override
+			public AddMethodListener getAddMethodListener() {
+				return null;
+			}
+
 		};
 		support = new HTMLSupport();
 	}
