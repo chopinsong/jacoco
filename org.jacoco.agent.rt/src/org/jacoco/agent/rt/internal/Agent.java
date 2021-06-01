@@ -23,7 +23,7 @@ import org.jacoco.agent.rt.internal.output.IAgentOutput;
 import org.jacoco.agent.rt.internal.output.NoneOutput;
 import org.jacoco.agent.rt.internal.output.TcpClientOutput;
 import org.jacoco.agent.rt.internal.output.TcpServerOutput;
-import org.jacoco.agent.rt.internal.stc.FpxWeb;
+import org.jacoco.agent.rt.internal.stc.MyWeb;
 import org.jacoco.core.JaCoCo;
 import org.jacoco.core.data.ExecutionDataWriter;
 import org.jacoco.core.runtime.AbstractRuntime;
@@ -89,7 +89,7 @@ public class Agent implements IAgent {
 	private IAgentOutput output;
 
 	private Callable<Void> jmxRegistration;
-	private FpxWeb fpxWeb;
+	private MyWeb          fpxWeb;
 
 	/**
 	 * Creates a new agent with the given agent options.
@@ -132,7 +132,7 @@ public class Agent implements IAgent {
 			if (options.getJmx()) {
 				jmxRegistration = new JmxRegistration(this);
 			}
-			fpxWeb = new FpxWeb(this);
+			fpxWeb = new MyWeb(this);
 			fpxWeb.run();
 		} catch (final Exception e) {
 			logger.logExeption(e);

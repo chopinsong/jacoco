@@ -8,13 +8,13 @@ import java.lang.ref.WeakReference;
 import java.net.InetSocketAddress;
 
 /**
- * @author songyanc
+ * @author chopin
  */
-public class FpxWeb {
+public class MyWeb {
     private WeakReference<Agent> instance;
     private HttpServer server;
 
-    public FpxWeb(Agent agent) {
+    public MyWeb(Agent agent) {
         instance = new WeakReference<Agent>(agent);
     }
 

@@ -11,7 +11,7 @@ import java.io.*;
 /**
  * 请求处理基类
  *
- * @author songyanc
+ * @author chopin
  */
 public abstract class BaseHandler implements HttpHandler {
     /**

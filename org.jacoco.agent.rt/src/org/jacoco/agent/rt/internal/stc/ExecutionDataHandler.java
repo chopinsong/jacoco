@@ -8,7 +8,7 @@ import java.lang.ref.WeakReference;
 import java.nio.charset.Charset;
 
 /**
- * @author songyanc
+ * @author chopin
  */
 public class ExecutionDataHandler extends BaseHandler {
     private WeakReference<Agent> instance;

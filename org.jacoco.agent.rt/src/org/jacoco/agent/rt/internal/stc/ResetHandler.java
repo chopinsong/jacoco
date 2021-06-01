@@ -7,7 +7,7 @@ import org.jacoco.agent.rt.internal.Agent;
 import java.lang.ref.WeakReference;
 
 /**
- * @author songyanc
+ * @author chopin
  */
 public class ResetHandler extends BaseHandler {
     private WeakReference<Agent> instance;
