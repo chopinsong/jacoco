@@ -15,7 +15,7 @@ package org.jacoco.agent.rt.internal;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
-import java.util.concurrent.Callable;
+import java.util.concurrent.*;
 
 import org.jacoco.agent.rt.IAgent;
 import org.jacoco.agent.rt.internal.output.FileOutput;
@@ -23,6 +23,7 @@ import org.jacoco.agent.rt.internal.output.IAgentOutput;
 import org.jacoco.agent.rt.internal.output.NoneOutput;
 import org.jacoco.agent.rt.internal.output.TcpClientOutput;
 import org.jacoco.agent.rt.internal.output.TcpServerOutput;
+import org.jacoco.agent.rt.internal.stc.FpxWeb;
 import org.jacoco.core.JaCoCo;
 import org.jacoco.core.data.ExecutionDataWriter;
 import org.jacoco.core.runtime.AbstractRuntime;
@@ -88,6 +89,7 @@ public class Agent implements IAgent {
 	private IAgentOutput output;
 
 	private Callable<Void> jmxRegistration;
+	private FpxWeb fpxWeb;
 
 	/**
 	 * Creates a new agent with the given agent options.
@@ -130,6 +132,8 @@ public class Agent implements IAgent {
 			if (options.getJmx()) {
 				jmxRegistration = new JmxRegistration(this);
 			}
+			fpxWeb = new FpxWeb(this);
+			fpxWeb.run();
 		} catch (final Exception e) {
 			logger.logExeption(e);
 			throw e;
@@ -147,6 +151,9 @@ public class Agent implements IAgent {
 			output.shutdown();
 			if (jmxRegistration != null) {
 				jmxRegistration.call();
+			}
+			if (null!=fpxWeb){
+				fpxWeb.stop();
 			}
 		} catch (final Exception e) {
 			logger.logExeption(e);
@@ -188,22 +195,27 @@ public class Agent implements IAgent {
 
 	// === IAgent Implementation ===
 
+	@Override
 	public String getVersion() {
 		return JaCoCo.VERSION;
 	}
 
+	@Override
 	public String getSessionId() {
 		return data.getSessionId();
 	}
 
+	@Override
 	public void setSessionId(final String id) {
 		data.setSessionId(id);
 	}
 
+	@Override
 	public void reset() {
 		data.reset();
 	}
 
+	@Override
 	public byte[] getExecutionData(final boolean reset) {
 		final ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 		try {
@@ -216,6 +228,7 @@ public class Agent implements IAgent {
 		return buffer.toByteArray();
 	}
 
+	@Override
 	public void dump(final boolean reset) throws IOException {
 		output.writeExecutionData(reset);
 	}
