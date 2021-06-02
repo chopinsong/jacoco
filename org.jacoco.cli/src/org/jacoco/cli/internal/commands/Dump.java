@@ -40,6 +40,12 @@ public class Dump extends Command {
 	@Option(name = "--reset", usage = "reset execution data on test target after dump")
 	boolean reset = false;
 
+	@Option(name = "--notdump", usage = "is dump or not")
+	boolean notdump = false;
+
+	@Option(name = "--notappend", usage = "append output")
+	boolean notappend = false;
+
 	@Option(name = "--retry", usage = "number of retries (default 10)", metaVar = "<count>")
 	int retrycount = 10;
 
@@ -65,13 +71,15 @@ public class Dump extends Command {
 			}
 		};
 		client.setReset(reset);
+		client.setDump(!notdump);
 		client.setRetryCount(retrycount);
 
-		final ExecFileLoader loader = client.dump(address, port);
-		out.printf("[INFO] Writing execution data to %s.%n",
-				destfile.getAbsolutePath());
-		loader.save(destfile, true);
-
+		if (!notdump) {
+			final ExecFileLoader loader = client.dump(address, port);
+			out.printf("[INFO] Writing execution data to %s.%n",
+					destfile.getAbsolutePath());
+			loader.save(destfile, !notappend);
+		}
 		return 0;
 	}
 
