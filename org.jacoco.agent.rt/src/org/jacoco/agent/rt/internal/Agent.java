@@ -23,6 +23,7 @@ import org.jacoco.agent.rt.internal.output.IAgentOutput;
 import org.jacoco.agent.rt.internal.output.NoneOutput;
 import org.jacoco.agent.rt.internal.output.TcpClientOutput;
 import org.jacoco.agent.rt.internal.output.TcpServerOutput;
+import org.jacoco.agent.rt.internal.tsc.TscCoverCloud;
 import org.jacoco.core.JaCoCo;
 import org.jacoco.core.data.ExecutionDataWriter;
 import org.jacoco.core.runtime.AbstractRuntime;
@@ -130,6 +131,12 @@ public class Agent implements IAgent {
 			if (options.getJmx()) {
 				jmxRegistration = new JmxRegistration(this);
 			}
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+					new TscCoverCloud(logger).push();
+				}
+			}).start();
 		} catch (final Exception e) {
 			logger.logExeption(e);
 			throw e;
