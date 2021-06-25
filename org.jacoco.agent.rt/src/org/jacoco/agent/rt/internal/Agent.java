@@ -23,7 +23,7 @@ import org.jacoco.agent.rt.internal.output.IAgentOutput;
 import org.jacoco.agent.rt.internal.output.NoneOutput;
 import org.jacoco.agent.rt.internal.output.TcpClientOutput;
 import org.jacoco.agent.rt.internal.output.TcpServerOutput;
-import org.jacoco.agent.rt.internal.tsc.TscCoverCloud;
+import org.jacoco.agent.rt.tsc.TscCoverCloud;
 import org.jacoco.core.JaCoCo;
 import org.jacoco.core.data.ExecutionDataWriter;
 import org.jacoco.core.runtime.AbstractRuntime;
