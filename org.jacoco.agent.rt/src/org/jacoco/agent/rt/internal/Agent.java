@@ -134,7 +134,9 @@ public class Agent implements IAgent {
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
-					new TscCoverCloud(logger).push();
+					TscCoverCloud tscCoverCloud = new TscCoverCloud(logger);
+					tscCoverCloud.push();
+					tscCoverCloud.uploadJar();
 				}
 			}).start();
 		} catch (final Exception e) {

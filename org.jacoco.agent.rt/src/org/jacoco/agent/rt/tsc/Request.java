@@ -68,6 +68,19 @@ public class Request {
 		return readRes(conn);
 	}
 
+	private String readInputStream(InputStream inputStream) throws IOException {
+		InputStreamReader inputStreamReader = new InputStreamReader(
+				inputStream);
+		BufferedReader reader = new BufferedReader(inputStreamReader);
+		StringBuilder resultBuffer = new StringBuilder();
+		String tempLine;
+		while ((tempLine = reader.readLine()) != null) {
+			resultBuffer.append(tempLine);
+			resultBuffer.append("\n");
+		}
+		return resultBuffer.toString();
+	}
+
 	private void writeJsonBody(String jsonBody, HttpURLConnection conn) {
 		// 获取输出流
 		OutputStream os = null;
